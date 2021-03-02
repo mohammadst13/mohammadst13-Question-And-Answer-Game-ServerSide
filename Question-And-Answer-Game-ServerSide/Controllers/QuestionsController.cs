@@ -29,10 +29,7 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
         [HttpPost]
         public void Post([FromBody] Models.Question question)
         {
-            context.Questions.Add(new Question()
-            {
-                Text = question.Text
-            });
+            context.Questions.Add(question);
             context.SaveChanges();
         }
     }

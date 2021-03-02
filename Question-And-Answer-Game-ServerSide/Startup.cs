@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +31,9 @@ namespace Question_And_Answer_Game_ServerSide
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
+
+            services.AddDbContext<QuizContext>(opt => opt.UseSqlServer("Data Source = (local);Initial Catalog=Quiz_DB;Integrated Security=True;MultipleActiveResultSets=True;"));
+
             services.AddControllers();
         }
 

@@ -20,11 +20,7 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Models.Question>> Get()
         {
-            return new Models.Question[] 
-            { 
-                new Question(){Text = "Mohammad"},
-                new Question(){Text = "tehrani"},
-            };
+            return context.Questions;
         }
         [HttpPost]
         public void Post([FromBody] Models.Question question)

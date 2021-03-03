@@ -18,14 +18,26 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
         {
             this.context = context;
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<Models.Question>> Get()
         {
             return context.Questions;
         }
+
+        [HttpGet("{quizId}")]
+        public ActionResult<IEnumerable<Models.Question>> Get([FromRoute] int quizId)
+        {
+            return context.Questions.Where(q => q.QuizId == quizId).ToList();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Models.Question question)
         {
+            if (!context.Quizzes.Any(q => q.ID == question.QuizId))
+            {
+                return StatusCode(404);
+            }
             context.Questions.Add(question);
             await context.SaveChangesAsync();
 

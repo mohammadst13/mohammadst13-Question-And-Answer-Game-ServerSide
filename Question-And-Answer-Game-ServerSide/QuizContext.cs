@@ -1,17 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Question_And_Answer_Game_ServerSide.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Question_And_Answer_Game_ServerSide.Models;
 
 namespace Question_And_Answer_Game_ServerSide
 {
     public class QuizContext:DbContext
     {
-        public QuizContext(DbContextOptions<QuizContext> options) : base(options) 
+        public QuizContext(DbContextOptions<QuizContext> options):base(options)
         { }
 
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
     }
 }

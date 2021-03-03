@@ -28,7 +28,8 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
             this.signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Register([FromBody] Credentials credentials)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Credentials credentials)
         {
             var user = new IdentityUser() { Email = credentials.Email, UserName = credentials.Email };
             var result = await userManager.CreateAsync(user, credentials.Password);

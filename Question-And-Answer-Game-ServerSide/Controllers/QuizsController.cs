@@ -24,9 +24,11 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
 
         // GET: api/Quizs
         [HttpGet]
+        [Authorize]
         public IEnumerable<Quiz> GetQuizzes()
         {
-            return _context.Quizzes;
+            var userId = HttpContext.User.Claims.First().Value;
+            return _context.Quizzes.Where(q => q.OwnerId == userId);
         }
 
         // GET: api/Quizs/5
@@ -92,6 +94,8 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var userId = HttpContext.User.Claims.First().Value;
+            quiz.OwnerId = userId;
 
             _context.Quizzes.Add(quiz);
             await _context.SaveChangesAsync();

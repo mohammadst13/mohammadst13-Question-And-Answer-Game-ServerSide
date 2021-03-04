@@ -11,5 +11,6 @@ namespace Question_And_Answer_Game_ServerSide.Models
         [Key]
         public int ID { get; set; }
         public string Title { get; set; }
+        public string OwnerId { get; set; }
     }
 }

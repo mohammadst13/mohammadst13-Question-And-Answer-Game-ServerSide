@@ -31,6 +31,12 @@ namespace Question_And_Answer_Game_ServerSide.Controllers
             return _context.Quizzes.Where(q => q.OwnerId == userId);
         }
 
+        [HttpGet("all")]
+        public IEnumerable<Quiz> GetAllQuizzes()
+        {
+            return _context.Quizzes;
+        }
+
         // GET: api/Quizs/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetQuiz([FromRoute] int id)
